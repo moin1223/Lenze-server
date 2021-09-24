@@ -110,6 +110,14 @@ app.get('/service/:id', (req, res) => {
  
     })
 
+    app.post('/isAdmin', (req, res) => {
+      const email = req.body.email;
+      adminCollection.find({ email: email })
+        .toArray((err, admins) => {
+          res.send(admins.length > 0);
+        })
+    })
+
 app.patch('/update/:id', (req, res) => {
   const updateService=req.body;
   console.log( updateService)
